@@ -6,7 +6,9 @@ const Calculadora = () => {
     //const [personas, setPersonas] = useState(0) //seteamos las personas en 0 al principio
     const [datos, setDatos] = useState({
         bills: 0,
-        tips: [5, 10, 15, 25, 50],
+        tips: {
+            dados: [5, 10, 15, 25, 50],
+            custom: 0},
         people: 0
     })
 
@@ -17,11 +19,29 @@ const Calculadora = () => {
                     <label>Bills: </label>
                         <input 
                         required
-                        type="text"
+                        type="number"
                         name='bills'
                         value={datos.bills}
                         placeholder="$"
                        />
+                    <label>Select tip: </label>
+                        {datos.tips.dados.map(e => {
+                            return (
+                                <button>{e}</button>
+                            )
+                        })}
+                        <input 
+                        type="number"
+                        name='custom'
+                        value={datos.tips.custom}
+                        placeholder="custom"/>
+                    <label>Number of people </label>
+                        <input
+                        required
+                        type='number'
+                        name='people'
+                        value={datos.people}
+                        />
                 </form>
             </div>
 
