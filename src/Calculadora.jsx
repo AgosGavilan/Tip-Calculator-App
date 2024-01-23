@@ -12,10 +12,14 @@ const Calculadora = () => {
         people: 0
     })
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+    }
+
     return (
         <div>
             <div className="izquierda">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <label>Bills: </label>
                         <input 
                         required
@@ -48,7 +52,19 @@ const Calculadora = () => {
 
 
             <div className="derecha">
-
+                <section>
+                        Tip Amount <span> / person</span>
+                        <div>
+                            $ {datos.bills}
+                        </div>
+                </section>
+                <section>
+                        Total <span> / person</span>
+                        <div>
+                            $ {}
+                        </div>
+                </section>
+                <button>RESET</button>
             </div>
             
         </div>
