@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 const Calculadora = () => {
-    //const [bills, setBills] = useState(0) //al principio el dinero va a estar en 0 porque aun no sabemos cuanto gastamos
-    //const [props, setProps] = useState([5, 10, 15, 25, 50]) // en un array coloco el porcentaje que viene por default
-    //const [personas, setPersonas] = useState(0) //seteamos las personas en 0 al principio
+
     const [datos, setDatos] = useState({
-        bill: null,
+        bill: '',
         tips: {
             dados: [5, 10, 15, 25, 50],
-            custom: null},
-        person: null
+            custom: ''
+        },
+        person: ''
     })
+    let elegido = null
     const [tipAmount, setTipAmount] = useState(0)
     const [total, setTotal] = useState(0)
 
@@ -19,26 +19,19 @@ const Calculadora = () => {
     }
 
     function handleChange (e) {
-        e.preventDefault()
         setDatos (prev => ({
             ...prev,
             [e.target.name]: e.target.value
         }))
+        console.log(datos.bill)
+        console.log(datos.person)
     }
 
-    function handleClick (e) {
-        console.log(e)
-
+    function handleClick (e) { //en esta funcion capturo el valor del boton
+        console.log('soy e', e.target.value)
+        elegido = e.target.value
+        console.log(elegido)
     }
-
-    // useEffect(() => {
-    //     let value = 0
-    //     value = (datos.bill * datos.tips.custom) / datos.person
-    //     console.log("soy value", value)
-    //     setTipAmount(value)
-    //     console.log("soy tipamount", tipAmount)
-    // }, [])
-
 
     return ( 
         <div>
@@ -46,9 +39,8 @@ const Calculadora = () => {
                 <form onSubmit={handleSubmit}>
                     <label>Bills: </label>
                         <input 
-                        //required
                         type="number"
-                        name='bill'
+                        name='bill' //utilizo este atributo para poder trabajar asi: e.target.name
                         value={datos.bill}
                         placeholder="0"
                         onChange={handleChange}
@@ -57,7 +49,11 @@ const Calculadora = () => {
                     <label>Select tip: </label>
                         {datos.tips.dados.map(t => {
                             return (
-                                <button key={t.id} onClick={handleClick}>
+                                <button
+                                value={t} //utilizo este atributo para poder trabajar con el e.target.value
+                                key={t}
+                                onClick={handleClick}
+                                >
                                     {t}%
                                 </button>
                             )
@@ -72,9 +68,8 @@ const Calculadora = () => {
 
                     <label>Number of people </label>
                         <input
-                        //required
                         type='number'
-                        name='people'
+                        name='person'
                         placeholder="0"
                         value={datos.person}
                         onChange={handleChange}
@@ -107,3 +102,6 @@ const Calculadora = () => {
 export default Calculadora
 
 //empezamos el 2024
+
+//para capturar el valor de un boton, tengo que agregarle el atributo value a dicho boton
+//<button value={t} key={t.id} onClick={handleClick}>
