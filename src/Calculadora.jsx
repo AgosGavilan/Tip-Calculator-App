@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 const Calculadora = () => {
-
-    const [datos, setDatos] = useState({
-        bill: '',
-        tips: {
-            dados: [5, 10, 15, 25, 50],
-            custom: ''
-        },
-        person: ''
+    const [bill, setBill] = useState(0)
+    const [tips, setTips] = useState({
+        dados: [5, 10, 15, 25, 50],
+        custom: 0
     })
-    let elegido = null
+    const [person, setPersons] = useState(0)
+    let elegido = ''
     const [tipAmount, setTipAmount] = useState(0)
     const [total, setTotal] = useState(0)
 
@@ -19,19 +16,18 @@ const Calculadora = () => {
     }
 
     function handleChange (e) {
-        setDatos (prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }))
-        console.log(datos.bill)
-        console.log(datos.person)
+        const {name,value} = e.target
+        setDatos({
+            [name]: value
+        })
     }
 
     function handleClick (e) { //en esta funcion capturo el valor del boton
-        console.log('soy e', e.target.value)
-        elegido = e.target.value
-        console.log(elegido)
+        elegido = e.target.value //aca guardo el valor del boton elegido
+        console.log('soy elegido', elegido)
     }
+
+
 
     return ( 
         <div>
@@ -41,13 +37,13 @@ const Calculadora = () => {
                         <input 
                         type="number"
                         name='bill' //utilizo este atributo para poder trabajar asi: e.target.name
-                        value={datos.bill}
+                        value={bill}
                         placeholder="0"
                         onChange={handleChange}
                        />
 
                     <label>Select tip: </label>
-                        {datos.tips.dados.map(t => {
+                        {tips.dados.map(t => {
                             return (
                                 <button
                                 value={t} //utilizo este atributo para poder trabajar con el e.target.value
@@ -61,7 +57,7 @@ const Calculadora = () => {
                         <input 
                         type="number"
                         name='custom'
-                        value={datos.tips.custom}
+                        value={tips.custom}
                         placeholder="custom"
                         onChange={handleChange}
                         />
@@ -71,7 +67,7 @@ const Calculadora = () => {
                         type='number'
                         name='person'
                         placeholder="0"
-                        value={datos.person}
+                        value={person}
                         onChange={handleChange}
                         />
                 </form>
