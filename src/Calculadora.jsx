@@ -9,7 +9,7 @@ const Calculadora = () => {
         },
         persons: ''
     })
-    const [elegido, setElegido] = useState('')
+    const [elegido, setElegido] = useState(0)
     const [tipAmount, setTipAmount] = useState(0)
     const [total, setTotal] = useState(0)
 
@@ -35,34 +35,28 @@ const Calculadora = () => {
         setElegido(e.target.value)
 
     }
-    
-    // if(datos.bill && datos.persons && elegido <= 1) { //si datos.bill y datos.persons y elegido es DISTINTO DE CERO
-    //     console.log('soy elegido', elegido)
-    //     useEffect(() => {
-    //         console.log('soy bill',datos.bill)
-    //         console.log('soy persons',datos.persons)
-    //         console.log('soy elegido', elegido)
-    // //         let tipAm = (datos.bill * elegido) / datos.persons
-    // //         console.log('soy tipAm',tipAm)
-    // //         tipAm > 0 ? setTipAmount(tipAm) : ''
-    // //     })
-    // // } else {
-    // //     alert('esta todo mal')
-    // // }
 
     useEffect(() => {
-        console.log('soy bill',datos.bill)
-            console.log('soy persons',datos.persons)
-            console.log('soy elegido', elegido)
         if(datos.bill.length > 0 && datos.persons > 0 && elegido.length > 0) {
             let tipAm = (datos.bill * (elegido / 100)) / datos.persons
-            console.log('soy tipAm',tipAm)
+            //console.log('soy tipAm',tipAm)
             tipAm > 0 ? setTipAmount(tipAm) : ''
         } else {
             ''
         }
         
     }), [tipAmount, datos]
+
+    useEffect(() => {
+        if(tipAmount > 0) {
+            let porcentaje = (datos.bill) * (elegido/100)
+            let totalPer = Number(datos.bill) + porcentaje // ARREGLAR EL PORCENTAJE
+            console.log('totalper', totalPer)
+            totalPer > 0 ? setTotal(totalPer) : ''
+        } else {
+            ''
+        }
+    }, [total, datos, tipAmount])
 
 
 
