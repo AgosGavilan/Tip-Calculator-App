@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 
 const Calculadora = () => {
     const [datos, setDatos] = useState({
-        bill: 0,
+        bill: '',
         tip: {
             dados: [5, 10, 15, 25, 50],
-            custom: 0
+            custom: ''
         },
-        persons: 0
+        persons: ''
     })
-    
-    let elegido = ''
+    const [elegido, setElegido] = useState('')
     const [tipAmount, setTipAmount] = useState(0)
     const [total, setTotal] = useState(0)
 
@@ -19,9 +18,9 @@ const Calculadora = () => {
     }
 
     // useEffect(() => {
-    //     console.log('soy bill',datos.bill)
-    //     console.log('soy persons',datos.persons)
-    //     console.log('soy tips dados',datos.tip.dados)
+    //     console.log(datos.bill.length)
+    //     console.log('soy elegido',elegido.length)
+    //     console.log(elegido)
     // })
 
     function handleChange (e) { // con esta funcion manejo los valores que reciben mis inputs //BILL y PERSONAS
@@ -32,19 +31,39 @@ const Calculadora = () => {
     }
 
     function handleClick (e) { //con esta funcion capturo el valor del boton elegido // TIP
-        elegido = e.target.value //aca guardo el valor del boton elegido
-        console.log('soy elegido', elegido)
-    }
+        //elegido = e.target.value //aca guardo el valor del boton elegido
+        setElegido(e.target.value)
 
-    // if(datos.bill || datos.persons || elegido) { //si datos.bill y datos.persons y elegido es DISTINTO DE CERO
+    }
+    
+    // if(datos.bill && datos.persons && elegido <= 1) { //si datos.bill y datos.persons y elegido es DISTINTO DE CERO
+    //     console.log('soy elegido', elegido)
     //     useEffect(() => {
-    //         let tipAm = (datos.bill * elegido) / datos.persons
-    //         console.log('soy tipAm',tipAm)
-    //         setTipAmount(tipAm)
-    //     })
-    // } else {
-    //     alert('esta todo mal')
-    // }
+    //         console.log('soy bill',datos.bill)
+    //         console.log('soy persons',datos.persons)
+    //         console.log('soy elegido', elegido)
+    // //         let tipAm = (datos.bill * elegido) / datos.persons
+    // //         console.log('soy tipAm',tipAm)
+    // //         tipAm > 0 ? setTipAmount(tipAm) : ''
+    // //     })
+    // // } else {
+    // //     alert('esta todo mal')
+    // // }
+
+    useEffect(() => {
+        console.log('soy bill',datos.bill)
+            console.log('soy persons',datos.persons)
+            console.log('soy elegido', elegido)
+        if(datos.bill.length > 0 && datos.persons > 0 && elegido.length > 0) {
+            let tipAm = (datos.bill * (elegido / 100)) / datos.persons
+            console.log('soy tipAm',tipAm)
+            tipAm > 0 ? setTipAmount(tipAm) : ''
+        } else {
+            ''
+        }
+        
+    }), [tipAmount, datos]
+
 
 
 
