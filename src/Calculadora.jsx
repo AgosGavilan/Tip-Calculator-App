@@ -17,12 +17,6 @@ const Calculadora = () => {
         e.preventDefault()
     }
 
-    // useEffect(() => {
-    //     console.log(datos.bill.length)
-    //     console.log('soy elegido',elegido.length)
-    //     console.log(elegido)
-    // })
-
     function handleChange (e) { // con esta funcion manejo los valores que reciben mis inputs //BILL y PERSONAS
         setDatos((prev) => ({
             ...prev, //utilizo el prev asi no me modifica TODOS MIS DATOS, sino los target que necesito
@@ -50,7 +44,8 @@ const Calculadora = () => {
     useEffect(() => {
         if(tipAmount > 0) {
             let porcentaje = (datos.bill) * (elegido/100)
-            let totalPer = Number(datos.bill) + porcentaje // ARREGLAR EL PORCENTAJE
+            //console.log('porcentaje', porcentaje) ---> esta bien
+            let totalPer = (Number(datos.bill) + porcentaje) / datos.persons
             console.log('totalper', totalPer)
             totalPer > 0 ? setTotal(totalPer) : ''
         } else {
