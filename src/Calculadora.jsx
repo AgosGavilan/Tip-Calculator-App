@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 const Calculadora = () => {
     const [datos, setDatos] = useState({
         bill: '',
-        tip: {
-            dados: [5, 10, 15, 25, 50],
-            custom: ''
-        },
+        tip: [5, 10, 15, 25, 50],
+        custom: '',
         persons: ''
     })
     const [elegido, setElegido] = useState(0)
@@ -22,18 +20,29 @@ const Calculadora = () => {
             ...prev, //utilizo el prev asi no me modifica TODOS MIS DATOS, sino los target que necesito
             [e.target.name]: e.target.value
         }))
+        setElegido(datos.custom)
     }
 
     function handleClick (e) { //con esta funcion capturo el valor del boton elegido // TIP
         //elegido = e.target.value //aca guardo el valor del boton elegido
         setElegido(e.target.value)
+    }
 
+    function handleReset () {
+      setDatos({
+        bill: '',
+        persons: '',
+        tip: [5, 10, 15, 25, 50],
+        custom: ''
+      })
+      setElegido(0),
+      setTipAmount(0),
+      setTotal(0)
     }
 
     useEffect(() => {
         if(datos.bill.length > 0 && datos.persons > 0 && elegido.length > 0) {
             let tipAm = (datos.bill * (elegido / 100)) / datos.persons
-            //console.log('soy tipAm',tipAm)
             tipAm > 0 ? setTipAmount(tipAm) : ''
         } else {
             ''
@@ -44,7 +53,6 @@ const Calculadora = () => {
     useEffect(() => {
         if(tipAmount > 0) {
             let porcentaje = (datos.bill) * (elegido/100)
-            //console.log('porcentaje', porcentaje) ---> esta bien
             let totalPer = (Number(datos.bill) + porcentaje) / datos.persons
             console.log('totalper', totalPer)
             totalPer > 0 ? setTotal(totalPer) : ''
@@ -52,9 +60,6 @@ const Calculadora = () => {
             ''
         }
     }, [total, datos, tipAmount])
-
-
-
 
     return ( 
         <div>
@@ -70,7 +75,7 @@ const Calculadora = () => {
                        />
 
                     <label>Select tip: </label>
-                        {datos.tip.dados.map(t => {
+                        {datos.tip.map(t => {
                             return (
                                 <button
                                 value={t} //utilizo este atributo para poder trabajar con el e.target.value
@@ -84,7 +89,7 @@ const Calculadora = () => {
                         <input 
                         type="number"
                         name='custom'
-                        value={datos.tip.custom}
+                        value={datos.custom}
                         placeholder="custom"
                         onChange={handleChange}
                         />
@@ -115,7 +120,7 @@ const Calculadora = () => {
                             $ {total}
                         </div>
                 </section>
-                <button>RESET</button>
+                <button onClick={handleReset}>RESET</button>
             </div>
             
         </div>
@@ -128,3 +133,8 @@ export default Calculadora
 
 //para capturar el valor de un boton, tengo que agregarle el atributo value a dicho boton
 //<button value={t} key={t.id} onClick={handleClick}>
+
+//agregar la funcionalidad del boton reset -----> LISTO!!
+//agregar la funcionalidad del input custom -----> LISTO!!
+//arreglar el total con el tema de los decimales y redondeo
+//empezar con el css
