@@ -20,12 +20,13 @@ const Calculadora = () => {
             ...prev, //utilizo el prev asi no me modifica TODOS MIS DATOS, sino los target que necesito
             [e.target.name]: e.target.value
         }))
-        setElegido(datos.custom)
+        datos.custom.length > 0 ? setElegido(datos.custom) : ''
     }
 
     function handleClick (e) { //con esta funcion capturo el valor del boton elegido // TIP
         //elegido = e.target.value //aca guardo el valor del boton elegido
         setElegido(e.target.value)
+        console.log('elegido', elegido)
     }
 
     function handleReset () {
@@ -43,7 +44,7 @@ const Calculadora = () => {
     useEffect(() => {
         if(datos.bill.length > 0 && datos.persons > 0 && elegido.length > 0) {
             let tipAm = (datos.bill * (elegido / 100)) / datos.persons
-            tipAm > 0 ? setTipAmount(tipAm) : ''
+            tipAm > 0 ? setTipAmount(Number(tipAm.toFixed(2))) : ''
         } else {
             ''
         }
@@ -54,8 +55,7 @@ const Calculadora = () => {
         if(tipAmount > 0) {
             let porcentaje = (datos.bill) * (elegido/100)
             let totalPer = (Number(datos.bill) + porcentaje) / datos.persons
-            console.log('totalper', totalPer)
-            totalPer > 0 ? setTotal(totalPer) : ''
+            totalPer > 0 ? setTotal(Number(totalPer.toFixed(2))) : ''
         } else {
             ''
         }
@@ -111,13 +111,13 @@ const Calculadora = () => {
                 <section>
                         Tip Amount <span> / person</span>
                         <div>
-                            $ {tipAmount}
+                        $ {tipAmount}
                         </div>
                 </section>
                 <section>
                         Total <span> / person</span>
                         <div>
-                            $ {total}
+                            $ {new Intl.NumberFormat('es-AR').format(total)}
                         </div>
                 </section>
                 <button onClick={handleReset}>RESET</button>
@@ -136,5 +136,7 @@ export default Calculadora
 
 //agregar la funcionalidad del boton reset -----> LISTO!!
 //agregar la funcionalidad del input custom -----> LISTO!!
-//arreglar el total con el tema de los decimales y redondeo
+//arreglar el total con el tema de los decimales y redondeo ----> LISTO!!
 //empezar con el css
+//   |____> empezar con la estructura
+//        > darle color
