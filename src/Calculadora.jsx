@@ -104,9 +104,7 @@ const Calculadora = () => {
                         />
                 </form>
             </div>
-
-
-
+            
             <div className="derecha">
                 <section>
                         Tip Amount <span> / person</span>
