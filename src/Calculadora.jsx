@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import s from './style/calculadora.module.css'
 
 const Calculadora = () => {
     const [datos, setDatos] = useState({
@@ -62,9 +63,9 @@ const Calculadora = () => {
     }, [total, datos, tipAmount])
 
     return ( 
-        <div>
-            <div className="izquierda">
-                <form onSubmit={handleSubmit}>
+        <div className={s.box}>
+            <div className={s.izquierda}>
+                <form onSubmit={handleSubmit} className={s.datos}>
                     <label>Bills: </label>
                         <input 
                         type="number"
@@ -75,24 +76,26 @@ const Calculadora = () => {
                        />
 
                     <label>Select tip: </label>
-                        {datos.tip.map(t => {
-                            return (
-                                <button
-                                value={t} //utilizo este atributo para poder trabajar con el e.target.value
-                                key={t}
-                                onClick={handleClick}
-                                >
-                                    {t}%
-                                </button>
-                            )
-                        })}
-                        <input 
-                        type="number"
-                        name='custom'
-                        value={datos.custom}
-                        placeholder="custom"
-                        onChange={handleChange}
-                        />
+                        <div className={s.tips}>
+                            {datos.tip.map(t => {
+                                return (
+                                    <button
+                                    value={t} //utilizo este atributo para poder trabajar con el e.target.value
+                                    key={t}
+                                    onClick={handleClick}
+                                    >
+                                        {t}%
+                                    </button>
+                                )
+                            })}
+                            <input 
+                            type="number"
+                            name='custom'
+                            value={datos.custom}
+                            placeholder="custom"
+                            onChange={handleChange}
+                            />
+                        </div>
 
                     <label>Number of people </label>
                         <input
@@ -136,5 +139,5 @@ export default Calculadora
 //agregar la funcionalidad del input custom -----> LISTO!!
 //arreglar el total con el tema de los decimales y redondeo ----> LISTO!!
 //empezar con el css
-//   |____> empezar con la estructura
+//   |____> empezar con la estructura ----> LISTO!!
 //        > darle color
