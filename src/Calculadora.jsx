@@ -66,8 +66,9 @@ const Calculadora = () => {
         <div className={s.box}>
             <div className={s.izquierda}>
                 <form onSubmit={handleSubmit} className={s.datos}>
-                    <label>Bills: </label>
+                    <label className={s.labels}>Bill </label>
                         <input 
+                        className={s.input}
                         type="number"
                         name='bill' //utilizo este atributo para poder trabajar asi: e.target.name
                         value={datos.bill}
@@ -75,11 +76,12 @@ const Calculadora = () => {
                         onChange={handleChange}
                        />
 
-                    <label>Select tip: </label>
+                    <label className={s.labels}>Select tip %</label>
                         <div className={s.tips}>
                             {datos.tip.map(t => {
                                 return (
                                     <button
+                                    className={s.button_tip}
                                     value={t} //utilizo este atributo para poder trabajar con el e.target.value
                                     key={t}
                                     onClick={handleClick}
@@ -89,16 +91,18 @@ const Calculadora = () => {
                                 )
                             })}
                             <input 
+                            className={s.input_custom}
                             type="number"
                             name='custom'
                             value={datos.custom}
-                            placeholder="custom"
+                            placeholder="Custom"
                             onChange={handleChange}
                             />
                         </div>
 
-                    <label>Number of people </label>
+                    <label className={s.labels}>Number of people </label>
                         <input
+                        className={s.input}
                         type='number'
                         name='persons'
                         placeholder="0"
