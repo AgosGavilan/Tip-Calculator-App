@@ -22,10 +22,11 @@
 }
 
 .labels {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     margin-top: 10px;
     color: rgb(93 103 103);
     font-weight: bold;
+    font-size: 10px;
 }
 
 .tips {
@@ -37,9 +38,16 @@
     border: none;
     background-color: rgb(232, 236, 243);
     padding: 6px;
-    border-radius: 5px;
+    border-radius: 3px;
     font-family: monospace;
     margin-bottom: 10px;
+}
+
+.input ::placeholder {
+    /*color: rgb(76, 88, 88);*/
+    color: rgb(180, 178, 178);
+    font-weight: bold;
+    /* padding: 185px; */
 }
 
 .input_custom {
@@ -48,17 +56,21 @@
     padding: 5px;
     border-radius: 3px;
     font-family: monospace;
-    font-size: 14px;
+    font-size: 13px;
     margin: 5px;
     color: rgb(93 103 103);
     font-weight: bold;
 }
 
-::placeholder {
-    color: rgb(76, 88, 88);
-    font-weight: bold;
+/*utilizo la siguiente linea de codigo para eliminar las flechas de los input tipo number*/
+::-webkit-inner-spin-button, ::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    margin: 0;
 }
 
+:focus-visible {
+    outline: 1.8px solid rgb(46, 179, 179);
+}
 .button_tip {
     border: none;
     border-radius: 3px;
@@ -69,4 +81,5 @@
     color: ghostwhite;
     margin: 5px;
     font-weight: 600;
+    cursor: pointer;
 }
