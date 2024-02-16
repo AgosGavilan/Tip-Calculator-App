@@ -11,6 +11,7 @@ const Calculadora = () => {
     const [elegido, setElegido] = useState(0)
     const [tipAmount, setTipAmount] = useState(0)
     const [total, setTotal] = useState(0)
+    const [isActive, setIsActive] = useState(false)
 
     function handleSubmit (e) {
         e.preventDefault()
@@ -27,7 +28,8 @@ const Calculadora = () => {
     function handleClick (e) { //con esta funcion capturo el valor del boton elegido // TIP
         //elegido = e.target.value //aca guardo el valor del boton elegido
         setElegido(e.target.value)
-        console.log('elegido', elegido)
+        
+
     }
 
     function handleReset () {
@@ -62,6 +64,7 @@ const Calculadora = () => {
         }
     }, [total, datos, tipAmount])
 
+
     return ( 
         <div className={s.box}>
             <div className={s.izquierda}>
@@ -81,7 +84,7 @@ const Calculadora = () => {
                             {datos.tip.map(t => {
                                 return (
                                     <button
-                                    className={s.button_tip}
+                                    className={t === elegido ? s.btn_elegido : s.button_tip}
                                     value={t} //utilizo este atributo para poder trabajar con el e.target.value
                                     key={t}
                                     onClick={handleClick}
