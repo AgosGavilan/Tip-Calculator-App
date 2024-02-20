@@ -3,6 +3,7 @@
     padding: 0;
 } */
 
+
 .box {
     background-color: ghostwhite;
     display: flex;
@@ -29,6 +30,27 @@
     font-size: 10px;
 }
 
+.box_bill {
+    /* display: flex;
+    flex-direction: row; */
+    position: relative;
+}
+
+.box_signo {
+    /* background-color: rgb(232, 236, 243);
+    padding: 3px;
+    height: 19px;
+    border-radius: 3px 0px 0px 3px; */
+    padding: 2px;
+    margin-left: 10px;
+    height: 16px;
+    font-size: 12px;
+    position: absolute;
+    display: block;
+    bottom: 12px;
+    color: rgb(180, 178, 178)
+}
+
 .tips {
     display: grid;
     grid-template-columns: 70px 70px 70px;
@@ -45,6 +67,7 @@
     color: rgb(4, 59, 59);
     text-align: right;
     font-weight: bold;
+    width: -webkit-fill-available;
 }
 
 .input::placeholder {
@@ -60,7 +83,7 @@
     font-family: monospace;
     font-size: 13px;
     margin: 5px;
-    color: rgb(93 103 103);
+    color: rgb(4, 59, 59);
     font-weight: bold;
     text-align: right;
 }
@@ -103,8 +126,8 @@
     padding: 5px;
     font-family: monospace;
     font-size: 14px;
-    background-color: rgb(46, 179, 179);
-    color: rgb(4, 59, 59);
+    background-color: rgb(25 185 185);
+    color: rgb(8, 77, 65);
     margin: 5px;
     font-weight: 600;
     cursor: pointer;

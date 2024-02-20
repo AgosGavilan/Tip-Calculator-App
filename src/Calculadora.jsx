@@ -11,11 +11,17 @@ const Calculadora = () => {
     const [elegido, setElegido] = useState(0)
     const [tipAmount, setTipAmount] = useState(0)
     const [total, setTotal] = useState(0)
-    const [isActive, setIsActive] = useState(false)
 
     function handleSubmit (e) {
         e.preventDefault()
     }
+
+    // useEffect(() => {
+    //     console.log(datos.tip, elegido)
+    //     console.log(isNaN(elegido))
+    // })
+
+    //ATENDE QUE ELEGIDO ME DEVUELVE UN STRING
 
     function handleChange (e) { // con esta funcion manejo los valores que reciben mis inputs //BILL y PERSONAS
         setDatos((prev) => ({
@@ -28,8 +34,7 @@ const Calculadora = () => {
     function handleClick (e) { //con esta funcion capturo el valor del boton elegido // TIP
         //elegido = e.target.value //aca guardo el valor del boton elegido
         setElegido(e.target.value)
-        
-
+        console.log('saber si es num', isNaN(elegido))
     }
 
     function handleReset () {
@@ -64,12 +69,13 @@ const Calculadora = () => {
         }
     }, [total, datos, tipAmount])
 
-
     return ( 
         <div className={s.box}>
             <div className={s.izquierda}>
                 <form onSubmit={handleSubmit} className={s.datos}>
                     <label className={s.labels}>Bill </label>
+                    <span className={s.box_bill}>
+                        <span className={s.box_signo}><p>$</p></span>
                         <input 
                         className={s.input}
                         type="number"
@@ -78,15 +84,16 @@ const Calculadora = () => {
                         placeholder="0"
                         onChange={handleChange}
                        />
+                    </span>   
 
                     <label className={s.labels}>Select tip %</label>
                         <div className={s.tips}>
-                            {datos.tip.map(t => {
+                            {datos.tip.map((t, i) => {
                                 return (
                                     <button
-                                    className={t === elegido ? s.btn_elegido : s.button_tip}
+                                    className={i === datos.tip.indexOf(Number(elegido)) ? s.btn_elegido : s.button_tip}
                                     value={t} //utilizo este atributo para poder trabajar con el e.target.value
-                                    key={t}
+                                    key={i} // i es el indice
                                     onClick={handleClick}
                                     >
                                         {t}%
@@ -104,6 +111,8 @@ const Calculadora = () => {
                         </div>
 
                     <label className={s.labels}>Number of people </label>
+                    <span className={s.box_bill}>
+                        <span class="material-symbols-outlined">person</span>
                         <input
                         className={s.input}
                         type='number'
@@ -112,6 +121,7 @@ const Calculadora = () => {
                         value={datos.persons}
                         onChange={handleChange}
                         />
+                    </span>
                 </form>
             </div>
             
