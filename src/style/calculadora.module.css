@@ -150,6 +150,7 @@
     margin-left: 15px;
     background-color: rgb(4, 59, 59);
     border-radius: 5px;
+    width: 210px;
 }
 
 .sub_box{
@@ -162,7 +163,6 @@
 .sub_box_izq{
     display: flex;
     flex-direction: column;
-    margin-right: 50px;
 }
 
 .palabras_mayor{
@@ -175,20 +175,16 @@
     font-size: 8px;
 }
 
-.box_resultados {
-    margin-left: 50px;
-}
-
 .resultados {
     font-weight: bold;
     color: rgb(91, 219, 219);
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .box_reset{
     display: flex;
     justify-content: center;
-    margin-top: 80px;
+    margin-top: 70px;
     padding-left: 15px;
     padding-right: 15px 
 }
