@@ -16,13 +16,6 @@ const Calculadora = () => {
         e.preventDefault()
     }
 
-    // useEffect(() => {
-    //     console.log(datos.tip, elegido)
-    //     console.log(isNaN(elegido))
-    // })
-
-    //ATENDE QUE ELEGIDO ME DEVUELVE UN STRING
-
     function handleChange (e) { // con esta funcion manejo los valores que reciben mis inputs //BILL y PERSONAS
         setDatos((prev) => ({
             ...prev, //utilizo el prev asi no me modifica TODOS MIS DATOS, sino los target que necesito
@@ -112,7 +105,7 @@ const Calculadora = () => {
 
                     <label className={s.labels}>Number of people </label>
                     <span className={s.box_bill}>
-                        <span class="material-symbols-outlined">person</span>
+                        <span className={s.person}>person</span>
                         <input
                         className={s.input}
                         type='number'
@@ -125,20 +118,32 @@ const Calculadora = () => {
                 </form>
             </div>
             
-            <div className="derecha">
-                <section>
-                        Tip Amount <span> / person</span>
-                        <div>
-                        $ {tipAmount}
-                        </div>
+            <div className={s.derecha}>
+                <section className={s.sub_box}>
+                    <span className={s.sub_box_izq}>
+                        <span className={s.palabras_mayor}>Tip Amount</span>
+                        <span className={s.palabras_menor}>/ person</span>
+                    </span> 
+                    <div className={s.box_resultados}>
+                        <span className={s.resultados}>
+                            $ {tipAmount}
+                        </span>
+                    </div>
                 </section>
-                <section>
-                        Total <span> / person</span>
-                        <div>
+                <section className={s.sub_box}>
+                    <span className={s.sub_box_izq}>
+                        <span className={s.palabras_mayor}>Total</span>
+                        <span className={s.palabras_menor}>/person</span>
+                    </span>
+                    <div className={s.box_resultados}>
+                        <span className={s.resultados}>
                             $ {new Intl.NumberFormat('es-AR').format(total)}
-                        </div>
+                        </span>
+                    </div>
                 </section>
-                <button onClick={handleReset}>RESET</button>
+                <div className={s.box_reset}>
+                    <button className={s.reset} onClick={handleReset}>RESET</button>
+                </div>
             </div>
             
         </div>
