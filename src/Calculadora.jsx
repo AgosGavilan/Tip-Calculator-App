@@ -11,10 +11,16 @@ const Calculadora = () => {
     const [elegido, setElegido] = useState(0)
     const [tipAmount, setTipAmount] = useState(0)
     const [total, setTotal] = useState(0)
+    const [isDisabled, setIsDisabled] = useState(true)
 
     function handleSubmit (e) {
         e.preventDefault()
     }
+
+    useEffect(() => {
+        datos.bill.length > 0  && datos.persons.length > 0 ? setIsDisabled(false) : isDisabled
+        console.log(isDisabled)
+    })
 
     function handleChange (e) { // con esta funcion manejo los valores que reciben mis inputs //BILL y PERSONAS
         setDatos((prev) => ({
@@ -27,7 +33,6 @@ const Calculadora = () => {
     function handleClick (e) { //con esta funcion capturo el valor del boton elegido // TIP
         //elegido = e.target.value //aca guardo el valor del boton elegido
         setElegido(e.target.value)
-        console.log('saber si es num', isNaN(elegido))
     }
 
     function handleReset () {
@@ -40,6 +45,7 @@ const Calculadora = () => {
       setElegido(0),
       setTipAmount(0),
       setTotal(0)
+      setIsDisabled(true)
     }
 
     useEffect(() => {
@@ -142,7 +148,13 @@ const Calculadora = () => {
                     </div>
                 </section>
                 <div className={s.box_reset}>
-                    <button className={s.reset} onClick={handleReset}>RESET</button>
+                    <button 
+                    className={isDisabled ? s.reset_disabled : s.reset} 
+                    onClick={handleReset}
+                    disabled={isDisabled}
+                    >
+                        RESET
+                    </button>
                 </div>
             </div>
             
