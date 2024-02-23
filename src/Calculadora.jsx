@@ -19,7 +19,7 @@ const Calculadora = () => {
 
     useEffect(() => {
         datos.bill.length > 0  && datos.persons.length > 0 ? setIsDisabled(false) : isDisabled
-        console.log(isDisabled)
+        //console.log(isDisabled)
     })
 
     function handleChange (e) { // con esta funcion manejo los valores que reciben mis inputs //BILL y PERSONAS
@@ -132,7 +132,7 @@ const Calculadora = () => {
                     </span> 
                     <div className={s.box_resultados}>
                         <span className={s.resultados}>
-                            $ {tipAmount}
+                            $ {new Intl.NumberFormat('es-AR').format(tipAmount)}
                         </span>
                     </div>
                 </section>
@@ -167,11 +167,14 @@ export default Calculadora
 //empezamos el 2024
 
 //para capturar el valor de un boton, tengo que agregarle el atributo value a dicho boton
-//<button value={t} key={t.id} onClick={handleClick}>
+//<button value={t} key={i} onClick={handleClick}>
 
 //agregar la funcionalidad del boton reset -----> LISTO!!
 //agregar la funcionalidad del input custom -----> LISTO!!
 //arreglar el total con el tema de los decimales y redondeo ----> LISTO!!
-//empezar con el css
+//empezar con el css ---> LISTO!!
 //   |____> empezar con la estructura ----> LISTO!!
-//        > darle color
+//        > darle color ---> LISTO!!
+//        > hacerlo responsive 
+//crear un manejador de errores
+
