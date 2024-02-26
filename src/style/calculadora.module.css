@@ -40,12 +40,6 @@
     color: rgb(180, 178, 178)
 }
 
-.tips {
-    display: grid;
-    grid-template-columns: 4.375rem 4.375rem 4.375rem;
-    margin-bottom: 0.6rem;
-}
-
 .input {
     border: none;
     background-color: rgb(232, 236, 243);
@@ -89,6 +83,12 @@
 
 :focus-visible {
     outline: 0.113rem solid rgb(46, 179, 179);
+}
+
+.tips {
+    display: grid;
+    grid-template-columns: 4.375rem 4.375rem 4.375rem;
+    margin-bottom: 0.6rem;
 }
 
 .button_tip {
